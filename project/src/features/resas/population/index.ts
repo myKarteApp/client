@@ -1,1 +1,1 @@
-export * from "@/features/resas/population/execute";
+// export * from "@/features/resas/population/execute";

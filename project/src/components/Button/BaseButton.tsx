@@ -3,11 +3,12 @@ import { useState } from 'react';
 
 type BaseButtonProps = {
   children: React.ReactNode;
-  callback: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  style: object;
+  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  className?: string | '';
+  style?: object;
 }
 
-export const BaseButton = ({children, callback, style={}}: BaseButtonProps) => {
+export const BaseButton = ({children, onClick, style={}, className='',}: BaseButtonProps) => {
     const [isDisabled, setIsDisabled] = useState(false);
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -15,7 +16,7 @@ export const BaseButton = ({children, callback, style={}}: BaseButtonProps) => {
       if (isDisabled) return;
 
       // 親コンポーネントから渡されたクリックイベント関数を実行
-      callback(e);
+      onClick(e);
       
       // ボタンを無効化
       setIsDisabled(true);
@@ -28,7 +29,7 @@ export const BaseButton = ({children, callback, style={}}: BaseButtonProps) => {
 
     
     return (
-        <button className='a-Btn' style={style} onClick={handleClick} disabled={isDisabled}>
+        <button className={`a-Btn ${className}`} style={style} onClick={handleClick} disabled={isDisabled}>
           {children}
         </button>
 

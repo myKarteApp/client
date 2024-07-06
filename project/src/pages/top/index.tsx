@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { local_storage } from '@/utils/storage';
 import { BaseLayout } from '@/layout/BaseLayout';
-import { resas_api_key_name, PrefInfoListResasContext, getPrefInfoList, PrefInfoListResultDto } from "@/features/resas";
+// import { resas_api_key_name, PrefInfoListResasContext, getPrefInfoList, PrefInfoListResultDto } from "@/features/resas";
 import { MyError } from '@/utils/error';
 import { ErrorContext } from '@/components/Modal/ErrorModal';
 import { BaseButton } from '@/components/Button';
@@ -10,7 +10,7 @@ import { BaseButton } from '@/components/Button';
 export const useSubmit = () => {
 
     const navigate = useNavigate();
-    const { setPrefInfoList } = useContext(PrefInfoListResasContext);
+    // const { setPrefInfoList } = useContext(PrefInfoListResasContext);
     const { setStatusCode } = useContext(ErrorContext);
 
     // ==========================
@@ -31,15 +31,15 @@ export const useSubmit = () => {
                 throw new MyError("500", "予期せぬエラー発生");
             }
 
-            const res: PrefInfoListResultDto = await getPrefInfoList(input_element.value)
+            // const res: PrefInfoListResultDto = await getPrefInfoList(input_element.value)
  
-            if (res.status_code != "200") {
-                throw new MyError(res.status_code, "予期せぬエラー発生")
-            }
+            // if (res.status_code != "200") {
+            //     throw new MyError(res.status_code, "予期せぬエラー発生")
+            // }
 
-            // 必要情報を設定する
-            local_storage.set(resas_api_key_name, input_element.value)
-            setPrefInfoList(res.result)
+            // // 必要情報を設定する
+            // local_storage.set(resas_api_key_name, input_element.value)
+            // setPrefInfoList(res.result)
 
             // 遷移する
             navigate("/graph");
@@ -62,7 +62,7 @@ type TopPageProps = {
     callback: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => Promise<void>| null;
 }
 
-export const TopPage = ({ callback }: TopPageProps) => {
+export const TopPage = () => {
     const submit = useSubmit()
     return <Inner callback={submit}/> 
 }
@@ -79,7 +79,7 @@ const Inner = ( { callback }: TopPageProps ) => {
                             app_key:
                             <input id="app_key" type="text" required/>
                         </label>
-                        <BaseButton callback={callback} style={{}}>送信</BaseButton>
+                        <BaseButton onClick={callback} style={{}}>送信</BaseButton>
                     </div>
 
                 </form>

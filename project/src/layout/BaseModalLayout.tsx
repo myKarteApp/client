@@ -3,9 +3,9 @@ import { BaseButton, btn_style } from '@/components/Button';
 type BaseModalLayoutProps = {
   children: React.ReactNode;
   hideModal: () => void;
-  class_name: string;
-  style: object;
-  inner_style: object;
+  class_name?: string;
+  style?: object;
+  inner_style?: object;
 }
 
 export const modal_base_style = {
@@ -38,7 +38,7 @@ export const BaseModalLayout = ( {
         style={style}
       >
         <div className={`container ${class_name}`} style={inner_style}>
-          <BaseButton callback={hideModal} style={btn_style}>Close</BaseButton>
+          <BaseButton onClick={hideModal} style={btn_style}>Close</BaseButton>
           {children}
         </div>
       </div>

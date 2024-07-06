@@ -33,3 +33,5 @@ export const errorRoutingConfig = [
       element: <Error404 />,
     },
   ];
+
+  

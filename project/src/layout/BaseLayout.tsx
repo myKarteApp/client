@@ -1,4 +1,6 @@
 
+import './BaseLayout.scss';
+
 type BaseLayoutProps = {
     children: React.ReactNode
 }
@@ -7,7 +9,8 @@ export const BaseLayout = ({children}: BaseLayoutProps) => {
 
     return (
     <> 
-        <header></header>
+        <header>
+        </header>
         <main>
             {children}
         </main>
